@@ -301,7 +301,7 @@ var iPhoneQiang = {
 	},
 	qiang : function(){
 
-		if($('#govid').length !== 0){
+		if($('#govid').length == 0){
 			time =parseInt(localStorage.getItem('qTime'));//提取时间, 10点到11点取货填10,下午1点取货填写13点,最晚21点到22点填21
 			firstName = localStorage.getItem('qFirstName');						//你的名字 (必须填写)
 			lastName =  localStorage.getItem('qLastName');							//你的姓氏 (必须填写)

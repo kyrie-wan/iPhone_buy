@@ -258,6 +258,9 @@ var iPhoneQiang = {
 		this.isNull('qSku',1);
 		this.isNull('qTime',1);
 		this.isNull('qAmount',1);
+		if($('#phoneNumber').length == 1){
+			document.querySelector("#phoneNumber").value = localStorage.getItem('qPhone');
+		}		
 	},
 	isNull : function(type,mode){
 		if(localStorage.getItem(type) !== null){

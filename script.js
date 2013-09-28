@@ -298,7 +298,6 @@ var iPhoneQiang = {
 			if($('#phoneNumber').length == 1){
 				document.querySelector("#phoneNumber").value = localStorage.getItem('qPhone');
 			}
-			document.querySelector("#phoneNumber").value = localStorage.getItem('qPhone');
 			alert('修改成功！');
 		});
 	},

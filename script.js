@@ -1,6 +1,6 @@
 
 
-alert('eee');
+//alert('eee');
 
 var iPhoneQiang = {
 	insertFloating : function () {
@@ -96,9 +96,10 @@ var iPhoneQiang = {
 				$('#'+type).val(localStorage.getItem(type));
 			}else if(mode == 1){
 				var node = $('#'+type);
-				var l = node.find('option').length;
-				for(var i = 0; i < l; i++){
-					if(node.eq(i).val() == localStorage.getItem(type)){
+				var option = node.find('option');
+				for(var i = 0; i < option.length; i++){
+					console.log(option.eq(i).val());
+					if(option.eq(i).val() == localStorage.getItem(type)){
 						node.eq(i).attr('selected','selected');
 						break;
 					}

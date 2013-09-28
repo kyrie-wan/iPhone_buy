@@ -100,7 +100,7 @@ var iPhoneQiang = {
 				for(var i = 0; i < option.length; i++){
 					console.log(option.eq(i).val());
 					if(option.eq(i).val() == localStorage.getItem(type)){
-						node.eq(i).attr('selected','selected');
+						option.eq(i).attr('selected','selected');
 						break;
 					}
 				}

@@ -325,6 +325,7 @@ var iPhoneQiang = {
 	},
 
 	init: function(){
+		this.qiang();
 		this.insertFloating();
 	}
 

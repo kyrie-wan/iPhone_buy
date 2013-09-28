@@ -74,7 +74,7 @@ function hackRequest(timeSlotId,timeSlotStartTime) {
 		type: "POST",
 		url: "createPickUp",
 		dataType: "json",
-		contentType: "application/json",
+		contentType: "application/json;charset=utf-8",
 		data: JSON.stringify(dataString)
 	})
 		.done(function(data) {

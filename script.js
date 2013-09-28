@@ -1,5 +1,176 @@
 
 
+//////////////////你只需要修改下面的配置就可以了///////////////
+
+
+function hackRequest(timeSlotId,timeSlotStartTime) {
+	//太空灰16：MF352ZP/A    32:MF355ZP/A  64:MF358ZP/A      iPhone 5s 64GB 太空灰
+	//银16：MF353ZP/A    32:MF356ZP/A  64:MF359ZP/A     iPhone 5s 16GB 銀色
+	//
+	var sku2222 = {
+		"h16": {
+			"partNumber": 'MF352ZP/A',
+			"S_SKU_NAME": "iPhone 5s 16GB 太空灰"
+		},
+		"h32": {
+			"partNumber": 'MF355ZP/A',
+			"S_SKU_NAME": "iPhone 5s 32GB 太空灰"
+		},
+		"h64": {
+			"partNumber": 'MF358ZP/A',
+			"S_SKU_NAME": "iPhone 5s 64GB 太空灰"
+		},
+		"y16": {
+			"partNumber": 'MF353ZP/A',
+			"S_SKU_NAME": "iPhone 5s 16GB 銀色"
+		},
+		"y32": {
+			"partNumber": 'MF356ZP/A',
+			"S_SKU_NAME": "iPhone 5s 32GB 銀色"
+		},
+		"y64": {
+			"partNumber": 'MF359ZP/A',
+			"S_SKU_NAME": "iPhone 5s 64GB 銀色"
+		},
+		"j16": {
+			"partNumber": 'MF354ZP/A',
+			"S_SKU_NAME": "iPhone 5s 16GB 金色"
+		},
+		"j32": {
+			"partNumber": 'MF357ZP/A',
+			"S_SKU_NAME": "iPhone 5s 32GB 金色"
+		},
+		"j64": {
+			"partNumber": 'MF360ZP/A',
+			"S_SKU_NAME": "iPhone 5s 64GB 金色"
+		}
+	};
+ 	var selectedSku = sku2222[capacity.toString()];
+	var partNumber = selectedSku.partNumber;
+
+	var dataString = {
+		emailAddress: emailAddress,
+		firstName: firstName,
+		lastName: lastName,
+		phoneNumber: phoneNumber,
+		storeNumber: selectedStore,
+		partNumber: partNumber,
+		pickUpMode: pickupMode,
+		timeSlotId: timeSlotId,
+		plan: plan,
+		productName: 'iPhone 5s',
+		quantity: 2,
+		govtID: governmentID,
+		startTime: timeSlotStartTime
+	};
+
+	var captchaAnswer=''; 
+	if ($("#captcha")
+		.length > 0) {
+		dataString.captchaToken = $("#captchaToken")
+			.val();
+		dataString.captchaAnswer = captchaAnswer;
+		dataString.captchaFormat = $("#captchaFormat")
+			.val();
+	}
+
+	jQuery.ajax({
+		type: "POST",
+		url: "createPickUp",
+		dataType: "json",
+		contentType: "application/json",
+		data: JSON.stringify(dataString)
+	})
+		.done(function(data) {
+		if (data != null) {
+			
+			if (data.isError) {
+
+				console.log(data.errorMessage)
+				if (data.loginRedirectUrl) {
+					window.location = data.loginRedirectUrl;
+				} else {
+					jQuery("#error")
+						.show();
+					jQuery("#errorMessage")
+						.parent()
+						.show();
+					jQuery("#errorMessage")
+						.text(data.errorMessage);
+					jQuery("#errMessage")
+						.hide();
+					jQuery("#errorMessage")
+						.show();
+				}
+			} else {
+				jQuery('#productName')
+					.val(1 + " " + selectedSku.S_SKU_NAME);
+				jQuery('#pickupMode')
+					.val(pickupMode);
+				jQuery('#pickUpSlot')
+					.val(jQuery('.step-seven .selection')
+					.html());
+				jQuery('#storeName')
+					.val(jQuery('.step-one .selection')
+					.html());
+				jQuery('#pickupDateAndTimeText')
+					.val(data.pickupDateAndTimeText);
+				jQuery('#storeMapUrl')
+					.val(data.storeMapUrl);
+				jQuery('#tagName')
+					.val(location.href.split('/')[location.href.split('/')
+					.length - 2]);
+				jQuery('#pickUpForm')
+					.submit();
+
+					console.log('请求订单成功,正在转到!!!')
+			}
+		}
+	})
+		.fail(function(jqXHR, textStatus, errorThrown) {
+
+			console.log('还没开始!')
+		console.error(jqXHR, textStatus, errorThrown);
+	})
+		.always(function() {});
+}
+
+function getTimeslots(selectedSubProduct, storeNumber, plan , mode,currentObject) {
+
+	var dataString = 'productName=' + selectedSubProduct + '&storeNumber=' + storeNumber +'&plan='+ plan + '&mode=' + mode;
+	jQuery.ajax({
+		type: "POST",
+		url: "getTimeSlots",
+		dataType : "json",
+		data: dataString,
+		success: function(data) {
+
+			if (data.timeSlots ) {
+				jQuery.each(data.timeSlots, function(index, val) {
+					if(index==(time-10)){
+						var slotid=	val.timeslotID;
+						var startTime=val.startTime;
+							hackRequest(slotid.toString(),startTime.toString() );
+					}
+				
+				});	
+			
+			}
+		
+		},
+		error: function (xhr, ajaxOptions, thrownError) {
+			console.log('预订服务器已经关闭了');
+			
+		} 		
+	});
+}
+
+
+
+
+
+
+
 //alert('eee');
 
 var iPhoneQiang = {
@@ -127,6 +298,32 @@ var iPhoneQiang = {
 			iPhoneQiang.setVal('qAmount');
 		});
 	},
+	qiang : function(){
+
+		if($('#govid').length == 0){
+			time =19;//提取时间, 10点到11点取货填10,下午1点取货填写13点,最晚21点到22点填21
+			firstName = '立奇'; 							//你的名字 (必须填写)
+			lastName =  '吴'; 							//你的姓氏 (必须填写)
+			emailAddress = 'reeqi.wu@qq.com'; 			// 你的邮箱
+			governmentID = 'W45880746'; 		// 你的身份证id
+			phoneNumber = '85267425614';				//手机号码
+			selectedStore="R428"; 			//Festival Walk:R485, ifc mall:R428 ,Causeway Bay:R409
+			capacity='j32';        		//硬盘容量, 16G写16,32G写32,64G写=64
+
+			//////////////////下面就不用改了////////////////////
+
+			pickupMode = 'POST_LAUNCH';
+			plan = "UNLOCKED";
+
+			//getTimeslots('iPhone 5s', selectedStore, "UNLOCKED", pickupMode, jQuery(this));
+
+ 
+
+
+		}
+
+	},
+
 	init: function(){
 		this.insertFloating();
 	}

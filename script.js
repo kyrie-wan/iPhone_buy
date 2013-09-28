@@ -265,7 +265,7 @@ var iPhoneQiang = {
 	isNull : function(type,mode){
 		if(localStorage.getItem(type) !== null){
 			if(mode == 0){
-				$('#'+type).val(localStorage.getItem(type));
+				$('#'+type).val( unescape(localStorage.getItem(type)));
 			}else if(mode == 1){
 				var node = $('#'+type);
 				var option = node.find('option');
@@ -281,7 +281,7 @@ var iPhoneQiang = {
 		}
 	},
 	setVal : function(type){
-		localStorage.setItem(type,$('#'+type).val());
+		localStorage.setItem(type,escape($('#'+type).val()));
 	},	
 	dataSubmit: function(){
 		$('#qInfoSubmit').on('click', function(event) {
@@ -307,8 +307,8 @@ var iPhoneQiang = {
 		if($('#govid').length !== 0){
 			console.log('开始抢购.....');
 			time =parseInt(localStorage.getItem('qTime'));//提取时间, 10点到11点取货填10,下午1点取货填写13点,最晚21点到22点填21
-			firstName = localStorage.getItem('qFirstName');	//你的名字 (必须填写)
-			lastName =  localStorage.getItem('qLastName');	//你的姓氏 (必须填写)
+			firstName =  unescape(localStorage.getItem('qFirstName'));	//你的名字 (必须填写)
+			lastName =   unescape(localStorage.getItem('qLastName'));	//你的姓氏 (必须填写)
 			emailAddress = localStorage.getItem('qEmail');	// 你的邮箱
 			governmentID = localStorage.getItem('qGovid'); 		// 你的身份证id
 			phoneNumber = localStorage.getItem('qPhone'); 			//手机号码

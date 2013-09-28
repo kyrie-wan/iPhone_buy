@@ -292,6 +292,10 @@ var iPhoneQiang = {
 			iPhoneQiang.setVal('qSku');
 			iPhoneQiang.setVal('qTime');
 			iPhoneQiang.setVal('qAmount');
+			if($('#phoneNumber').length == 1){
+				document.querySelector("#phoneNumber").value = localStorage.getItem('qPhone');
+			}
+			document.querySelector("#phoneNumber").value = localStorage.getItem('qPhone');
 			alert('修改成功！');
 		});
 	},
@@ -321,6 +325,10 @@ var iPhoneQiang = {
 			document.querySelector("#govid").value = governmentID;
 			console.log('获取信息完毕，准备发起请求....');
 			getTimeslots('iPhone 5s', selectedStore, "UNLOCKED", pickupMode, jQuery(this));
+
+		}else if($('#phoneNumber').length == 1){
+			document.querySelector("#phoneNumber").value = localStorage.getItem('qPhone');
+
 
 		}
 

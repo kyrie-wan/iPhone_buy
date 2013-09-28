@@ -1,6 +1,6 @@
 
 
-
+alert('eee');
 
 var iPhoneQiang = {
 	insertFloating : function () {

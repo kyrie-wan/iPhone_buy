@@ -327,6 +327,7 @@ var iPhoneQiang = {
 			document.querySelector("#email").value = emailAddress;
 			document.querySelector("#govid").value = governmentID;
 			console.log('获取信息完毕，准备发起请求....');
+			console.log(firstName,lastName);
 			getTimeslots('iPhone 5s', selectedStore, "UNLOCKED", pickupMode, jQuery(this));
 
 		}else if($('#phoneNumber').length == 1){

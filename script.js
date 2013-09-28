@@ -300,12 +300,12 @@ var iPhoneQiang = {
 		if($('#govid').length !== 0){
 
 			time =parseInt(localStorage.getItem('qTime'));//提取时间, 10点到11点取货填10,下午1点取货填写13点,最晚21点到22点填21
-			firstName = localStorage.getItem('qFirstName');						//你的名字 (必须填写)
-			lastName =  localStorage.getItem('qLastName');							//你的姓氏 (必须填写)
-			emailAddress = localStorage.getItem('qEmail');			// 你的邮箱
+			firstName = localStorage.getItem('qFirstName');	//你的名字 (必须填写)
+			lastName =  localStorage.getItem('qLastName');	//你的姓氏 (必须填写)
+			emailAddress = localStorage.getItem('qEmail');	// 你的邮箱
 			governmentID = localStorage.getItem('qGovid'); 		// 你的身份证id
-			phoneNumber = localStorage.getItem('qPhone'); 				//手机号码
-			selectedStore= localStorage.getItem('qStore');			//Festival Walk:R485, ifc mall:R428 ,Causeway Bay:R409
+			phoneNumber = localStorage.getItem('qPhone'); 			//手机号码
+			selectedStore= localStorage.getItem('qStore');		//Festival Walk:R485, ifc mall:R428 ,Causeway Bay:R409
 			capacity=localStorage.getItem('qSku'); //硬盘容量, 16G写16,32G写32,64G写=64
 			amount = parseInt(localStorage.getItem('qAmount'));
 
@@ -330,9 +330,6 @@ var iPhoneQiang = {
 		this.qiang();
 		this.insertFloating();
 	}
-
-
-
 
 }
 

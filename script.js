@@ -4,7 +4,7 @@
 
 var iPhoneQiang = {
 	insertFloating : function () {
-		var floatingHTml = '<div class="qFloating"><div class="form-group">\
+		var floatingHTml = '<style>.form-group {margin-bottom: 15px; }</style><div class="qFloating"><div class="form-group">\
 		    <label for="firstName">名字</label>\
 		    <input type="txt" class="form-control" id="qFirstName" placeholder="请输入你的名字">\
 		  </div>\

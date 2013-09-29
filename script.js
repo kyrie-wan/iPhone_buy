@@ -73,12 +73,11 @@ function hackRequest(timeSlotId,timeSlotStartTime) {
 		dataString.captchaFormat = $("#captchaFormat")
 			.val();
 	}
-	console.log(JSON.stringify(dataString));
 	jQuery.ajax({
 		type: "POST",
 		url: "createPickUp",
 		dataType: "json",
-		contentType: "application/json;charset=utf-8",
+		contentType: "application/json",
 		data: JSON.stringify(dataString)
 	})
 		.done(function(data) {
@@ -271,7 +270,7 @@ var iPhoneQiang = {
 	isNull : function(type,mode){
 		if(localStorage.getItem(type) !== null){
 			if(mode == 0){
-				$('#'+type).val( unescape(localStorage.getItem(type)));
+				$('#'+type).val(localStorage.getItem(type));
 			}else if(mode == 1){
 				var node = $('#'+type);
 				var option = node.find('option');
@@ -287,7 +286,7 @@ var iPhoneQiang = {
 		}
 	},
 	setVal : function(type){
-		localStorage.setItem(type,escape($('#'+type).val()));
+		localStorage.setItem(type,$('#'+type).val());
 	},	
 	dataSubmit: function(){
 		$('#qInfoSubmit').on('click', function(event) {
@@ -312,8 +311,8 @@ var iPhoneQiang = {
 		if($('#govid').length == 0){
 			console.log('开始抢购.....');
 			time =parseInt(localStorage.getItem('qTime'));
-			firstName =  unescape(localStorage.getItem('qFirstName'));
-			lastName =   unescape(localStorage.getItem('qLastName'));	
+			firstName =  localStorage.getItem('qFirstName');
+			lastName =   localStorage.getItem('qLastName');	
 			emailAddress = localStorage.getItem('qEmail');
 			governmentID = localStorage.getItem('qGovid'); 
 			phoneNumber = localStorage.getItem('qPhone'); 

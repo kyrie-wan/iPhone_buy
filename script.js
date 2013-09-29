@@ -266,6 +266,7 @@ var iPhoneQiang = {
 		if($('#phoneNumber').length == 1){
 			document.querySelector("#phoneNumber").value = localStorage.getItem('qPhone');
 		}		
+		
 	},
 	isNull : function(type,mode){
 		if(localStorage.getItem(type) !== null){
@@ -332,10 +333,6 @@ var iPhoneQiang = {
 			console.log('获取信息完毕，准备发起请求....');
 			console.log(firstName,lastName);
 			//getTimeslots('iPhone 5s', selectedStore, "UNLOCKED", pickupMode, jQuery(this));
-
-		}else if($('#phoneNumber').length == 1){
-			document.querySelector("#phoneNumber").value = localStorage.getItem('qPhone');
-
 
 		}
 

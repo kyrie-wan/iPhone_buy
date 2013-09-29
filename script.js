@@ -73,7 +73,7 @@ function hackRequest(timeSlotId,timeSlotStartTime) {
 		dataString.captchaFormat = $("#captchaFormat")
 			.val();
 	}
-
+	console.log(JSON.stringify(dataString));
 	jQuery.ajax({
 		type: "POST",
 		url: "createPickUp",

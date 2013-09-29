@@ -45,7 +45,7 @@ function hackRequest(timeSlotId,timeSlotStartTime) {
 			"S_SKU_NAME": "iPhone 5s 64GB 金色"
 		}
 	};
- 	// var selectedSku = skuData[capacity];
+ 	var selectedSku = skuData[capacity];
 	var partNumber = selectedSku.partNumber;
 
 	var dataString = {
@@ -266,7 +266,7 @@ var iPhoneQiang = {
 		if($('#phoneNumber').length == 1){
 			document.querySelector("#phoneNumber").value = localStorage.getItem('qPhone');
 		}		
-		
+
 	},
 	isNull : function(type,mode){
 		if(localStorage.getItem(type) !== null){

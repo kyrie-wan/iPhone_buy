@@ -1,9 +1,15 @@
+/*
+ * 此脚本用于2013年9月20日起，每天早上6点苹果香港官网进行的iPhone5S预订活动
+ * 部分代码参考http://item.taobao.com/item.htm?id=35086681528（已购），感谢原作者的智慧结晶及提供了思路！
+ * 声明：本人没有通过此脚本获得任何利益，出于分享的精神，为了让更多的果粉提前预约到iPhone5S，重新封装并优化了体验，可配合
+Tampermonkey等脚本自动加载插件使用，加载此脚本后进入https://ireservea.apple.com/HK/zh_HK/reserve/iPhone直接体验
+ */
+
+
+
 
 function hackRequest(timeSlotId,timeSlotStartTime) {
-	//太空灰16：MF352ZP/A    32:MF355ZP/A  64:MF358ZP/A      iPhone 5s 64GB 太空灰
-	//银16：MF353ZP/A    32:MF356ZP/A  64:MF359ZP/A     iPhone 5s 16GB 銀色
-	//
-	var skuData = {
+	var skuData = [
 		"h16": {
 			"partNumber": 'MF352ZP/A',
 			"S_SKU_NAME": "iPhone 5s 16GB 太空灰"
@@ -40,8 +46,8 @@ function hackRequest(timeSlotId,timeSlotStartTime) {
 			"partNumber": 'MF360ZP/A',
 			"S_SKU_NAME": "iPhone 5s 64GB 金色"
 		}
-	};
- 	var selectedSku = skuData[capacity];
+	];
+ 	// var selectedSku = skuData[capacity];
 	var partNumber = selectedSku.partNumber;
 
 	var dataString = {
@@ -131,6 +137,7 @@ function hackRequest(timeSlotId,timeSlotStartTime) {
 		.always(function() {});
 }
 
+// 重写getTimeslots
 function getTimeslots(selectedSubProduct, storeNumber, plan , mode,currentObject) {
 
 	var dataString = 'productName=' + selectedSubProduct + '&storeNumber=' + storeNumber +'&plan='+ plan + '&mode=' + mode;
@@ -305,18 +312,17 @@ var iPhoneQiang = {
 
 		if($('#govid').length !== 0){
 			console.log('开始抢购.....');
-			time =parseInt(localStorage.getItem('qTime'));//提取时间, 10点到11点取货填10,下午1点取货填写13点,最晚21点到22点填21
-			firstName =  unescape(localStorage.getItem('qFirstName'));	//你的名字 (必须填写)
-			lastName =   unescape(localStorage.getItem('qLastName'));	//你的姓氏 (必须填写)
-			emailAddress = localStorage.getItem('qEmail');	// 你的邮箱
-			governmentID = localStorage.getItem('qGovid'); 		// 你的身份证id
-			phoneNumber = localStorage.getItem('qPhone'); 			//手机号码
-			selectedStore= localStorage.getItem('qStore');		//Festival Walk:R485, ifc mall:R428 ,Causeway Bay:R409
-			capacity=localStorage.getItem('qSku'); //硬盘容量, 16G写16,32G写32,64G写=64
+			time =parseInt(localStorage.getItem('qTime'));
+			firstName =  unescape(localStorage.getItem('qFirstName'));
+			lastName =   unescape(localStorage.getItem('qLastName'));	
+			emailAddress = localStorage.getItem('qEmail');
+			governmentID = localStorage.getItem('qGovid'); 
+			phoneNumber = localStorage.getItem('qPhone'); 
+			selectedStore= localStorage.getItem('qStore');
+			capacity=localStorage.getItem('qSku');
 			amount = parseInt(localStorage.getItem('qAmount'));
 
 
-			//////////////////下面就不用改了////////////////////
 
 			pickupMode = 'POST_LAUNCH';
 			plan = "UNLOCKED";

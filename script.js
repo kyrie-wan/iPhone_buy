@@ -292,7 +292,7 @@ var iPhoneQiang = {
 	selectSave: function(){
 		$('#qSku').change(function(){
 			console.log($(this).val());
-		}
+		})
 	},
 	dataSubmit: function(){
 		$('#qInfoSubmit').on('click', function(event) {

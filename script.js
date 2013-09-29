@@ -6,10 +6,8 @@ Tampermonkey等脚本自动加载插件使用，加载此脚本后进入https://
  */
 
 
-
-
 function hackRequest(timeSlotId,timeSlotStartTime) {
-	var skuData = [
+	var skuData = {
 		"h16": {
 			"partNumber": 'MF352ZP/A',
 			"S_SKU_NAME": "iPhone 5s 16GB 太空灰"
@@ -46,7 +44,7 @@ function hackRequest(timeSlotId,timeSlotStartTime) {
 			"partNumber": 'MF360ZP/A',
 			"S_SKU_NAME": "iPhone 5s 64GB 金色"
 		}
-	];
+	};
  	// var selectedSku = skuData[capacity];
 	var partNumber = selectedSku.partNumber;
 

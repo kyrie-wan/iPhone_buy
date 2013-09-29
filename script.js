@@ -3,7 +3,7 @@ function hackRequest(timeSlotId,timeSlotStartTime) {
 	//太空灰16：MF352ZP/A    32:MF355ZP/A  64:MF358ZP/A      iPhone 5s 64GB 太空灰
 	//银16：MF353ZP/A    32:MF356ZP/A  64:MF359ZP/A     iPhone 5s 16GB 銀色
 	//
-	var sku2222 = {
+	var skuData = {
 		"h16": {
 			"partNumber": 'MF352ZP/A',
 			"S_SKU_NAME": "iPhone 5s 16GB 太空灰"
@@ -41,7 +41,7 @@ function hackRequest(timeSlotId,timeSlotStartTime) {
 			"S_SKU_NAME": "iPhone 5s 64GB 金色"
 		}
 	};
- 	var selectedSku = sku2222[capacity.toString()];
+ 	var selectedSku = skuData[capacity];
 	var partNumber = selectedSku.partNumber;
 
 	var dataString = {
@@ -270,7 +270,7 @@ var iPhoneQiang = {
 				var node = $('#'+type);
 				var option = node.find('option');
 				for(var i = 0; i < option.length; i++){
-					console.log(option.eq(i).val());
+					//console.log(option.eq(i).val());
 					if(option.eq(i).val() == localStorage.getItem(type)){
 						option.eq(i).attr('selected','selected');
 						break;

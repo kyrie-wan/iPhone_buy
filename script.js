@@ -250,6 +250,7 @@ var iPhoneQiang = {
 		$('body').append(floatingHTml);
 		this.getLs();
 		this.dataSubmit();
+		this.selectSave();
 
 	},
 	getLs : function(){
@@ -288,6 +289,11 @@ var iPhoneQiang = {
 	setVal : function(type){
 		localStorage.setItem(type,$('#'+type).val());
 	},	
+	selectSave: function(){
+		$('#qSku').change(function(){
+			console.log($(this).val());
+		}
+	},
 	dataSubmit: function(){
 		$('#qInfoSubmit').on('click', function(event) {
 			event.preventDefault();
@@ -308,7 +314,7 @@ var iPhoneQiang = {
 	},
 	qiang : function(){
 
-		if($('#govid').length == 0){
+		if($('#govid').length !== 0){
 			console.log('开始抢购.....');
 			time =parseInt(localStorage.getItem('qTime'));
 			firstName =  localStorage.getItem('qFirstName');
@@ -319,22 +325,16 @@ var iPhoneQiang = {
 			selectedStore= localStorage.getItem('qStore');
 			capacity=localStorage.getItem('qSku');
 			amount = parseInt(localStorage.getItem('qAmount'));
-
-
-
 			pickupMode = 'POST_LAUNCH';
 			plan = "UNLOCKED";
-
-			// document.querySelector("#firstname").value = firstName;
-			// document.querySelector("#lastname").value = lastName;
-			// document.querySelector("#email").value = emailAddress;
-			// document.querySelector("#govid").value = governmentID;
+			document.querySelector("#firstname").value = firstName;
+			document.querySelector("#lastname").value = lastName;
+			document.querySelector("#email").value = emailAddress;
+			document.querySelector("#govid").value = governmentID;
 			console.log('获取信息完毕，准备发起请求....');
 			console.log(firstName,lastName);
-			//getTimeslots('iPhone 5s', selectedStore, "UNLOCKED", pickupMode, jQuery(this));
-
+			getTimeslots('iPhone 5s', selectedStore, "UNLOCKED", pickupMode, jQuery(this));
 		}
-
 	},
 
 	init: function(){

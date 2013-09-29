@@ -250,8 +250,10 @@ var iPhoneQiang = {
 		$('body').append(floatingHTml);
 		this.getLs();
 		this.dataSubmit();
-		this.selectSave();
-
+		this.selectSave('qStore');
+		this.selectSave('qSku');
+		this.selectSave('qTime');
+		this.selectSave('qAmount');
 	},
 	getLs : function(){
 		this.isNull('qFirstName',0);
@@ -289,9 +291,9 @@ var iPhoneQiang = {
 	setVal : function(type){
 		localStorage.setItem(type,$('#'+type).val());
 	},	
-	selectSave: function(){
-		$('#qSku').change(function(){
-			console.log($(this).val());
+	selectSave: function(type){
+		$('#'+ type).change(function(){
+			iPhoneQiang.setVal(type);
 		})
 	},
 	dataSubmit: function(){

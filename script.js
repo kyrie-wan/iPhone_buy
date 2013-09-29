@@ -308,7 +308,7 @@ var iPhoneQiang = {
 	},
 	qiang : function(){
 
-		if($('#govid').length == 0){
+		if($('#govid').length !== 0){
 			console.log('开始抢购.....');
 			time =parseInt(localStorage.getItem('qTime'));
 			firstName =  unescape(localStorage.getItem('qFirstName'));
@@ -330,7 +330,7 @@ var iPhoneQiang = {
 			document.querySelector("#email").value = emailAddress;
 			document.querySelector("#govid").value = governmentID;
 			console.log('获取信息完毕，准备发起请求....');
-			console.log(firstName,lastName);
+			//console.log(firstName,lastName);
 			getTimeslots('iPhone 5s', selectedStore, "UNLOCKED", pickupMode, jQuery(this));
 
 		}else if($('#phoneNumber').length == 1){

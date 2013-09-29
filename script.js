@@ -122,7 +122,7 @@ function hackRequest(timeSlotId,timeSlotStartTime) {
 				jQuery('#pickUpForm')
 					.submit();
 
-					console.log('请求订单成功,正在转到!!!')
+					console.log('下单成功!!!')
 			}
 		}
 	})

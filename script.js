@@ -308,7 +308,7 @@ var iPhoneQiang = {
 	},
 	qiang : function(){
 
-		if($('#govid').length !== 0){
+		if($('#govid').length == 0){
 			console.log('开始抢购.....');
 			time =parseInt(localStorage.getItem('qTime'));
 			firstName =  unescape(localStorage.getItem('qFirstName'));
